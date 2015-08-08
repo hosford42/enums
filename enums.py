@@ -183,6 +183,7 @@ class Enum(object):
         """Must be called after the class definition ends. Causes constants
         defined therein to be replaced with values of the appropriate type.
         """
+        cls._values = []
         for name in dir(cls):
             value = getattr(cls, name)
             if not isinstance(value, Const):
@@ -190,6 +191,17 @@ class Enum(object):
             replacement = cls(*value._args, **value._kwargs)
             replacement._name = name
             setattr(cls, name, replacement)
+            cls._values.append(replacement)
+
+    @classmethod
+    def each(cls):
+        """Return an iterator over the values in the enumeration."""
+        return iter(cls._values)
+
+    @classmethod
+    def count(cls):
+        """The numer of values in the enumeration."""
+        return len(cls._values)
 
     def __init__(self, *args, **kwargs):
         self._name = ' unnamed '  # Placeholder; overwritten by close()
@@ -284,6 +296,8 @@ def test():
     assert Enumeration.VALUE1 != Enumeration2.VALUE1
     assert isinstance(Enumeration.VALUE1, Enumeration)
     assert int(Enumeration2.VALUE3) == 1000
+    assert (set(Enumeration.each()) ==
+            {Enumeration.VALUE1, Enumeration.VALUE2})
 
     # TODO: Test cases for Registry class.
 
