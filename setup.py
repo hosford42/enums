@@ -42,7 +42,7 @@ setup(
     version=__version__,
     author=__author__,
     author_email='hosford42@gmail.com',
-    #url='',
+    url='https://github.com/hosford42/enums',
     license='MIT',
     platforms=['any'],
     description='enums: Enumeration types for Python',
@@ -62,12 +62,11 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
 
     keywords='enum enumeration const constant registry value sharing',
-    packages=['enums']
+    py_modules=['enums']
 )
 
