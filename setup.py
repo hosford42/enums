@@ -3,13 +3,11 @@
 
 """Setup script for enums."""
 
-__author__ = 'Aaron Hosford'
-
 from setuptools import setup
 from codecs import open
 from os import path
 
-from enums import __version__
+from enums import __author__, __version__
 
 here = path.abspath(path.dirname(__file__))
 
