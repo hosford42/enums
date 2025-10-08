@@ -217,6 +217,13 @@ class Enum(object):
     def __repr__(self):
         return type(self).__name__ + '.' + self._name
 
+    @staticmethod
+    def _unpickle(cls, name):
+        return getattr(cls, name)
+
+    def __reduce__(self):
+        return Enum._unpickle, (type(self), self._name)
+
 
 class Registry(object):
     """A class for managing a space of unique name/value pairs that could
